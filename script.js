@@ -6,8 +6,10 @@ function configuracoes() {
   elementoCanvas.height = contextoCanvas.height = window.innerHeight
 }
 
-function desenho() {
-
+function desenhar() {
+  contextoCanvas.fillStyle = '#286047'
+  contextoCanvas.fillRect(0, 0, window.innerWidth, window.innerHeight)
 }
 
 configuracoes()
+desenhar()
