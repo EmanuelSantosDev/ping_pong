@@ -13,12 +13,24 @@ function desenhar() {
   contextoCanvas.fillRect(0, 0, window.innerWidth, window.innerHeight)
 
   // desenhando a linha central
-  const x = (window.innerWidth / 2) - (espessuraDaLinha / 2)
-  const y = 0
-  const largura = espessuraDaLinha
-  const altura = window.innerHeight
   contextoCanvas.fillStyle = '#ffffff'
-  contextoCanvas.fillRect(x, y, largura, altura)
+  contextoCanvas.fillRect(
+    window.innerWidth / 2 - espessuraDaLinha / 2,
+    0,
+    espessuraDaLinha,
+    window.innerHeight
+  )
+
+  // desenhando a raquete esquerda
+  contextoCanvas.fillRect(10, 100, espessuraDaLinha, 200)
+
+  // desenhando a raquete direita
+  contextoCanvas.fillRect(
+    window.innerWidth - espessuraDaLinha - 10,
+    300,
+    espessuraDaLinha,
+    200
+  )
 }
 
 configuracoes()
