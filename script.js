@@ -31,6 +31,11 @@ function desenhar() {
     espessuraDaLinha,
     200
   )
+
+  // desenhando a bola
+  contextoCanvas.beginPath()
+  contextoCanvas.arc(300, 300, 20, 0, 2 * Math.PI, false)
+  contextoCanvas.fill()
 }
 
 configuracoes()
