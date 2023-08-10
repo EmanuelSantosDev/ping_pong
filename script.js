@@ -36,6 +36,14 @@ function desenhar() {
   contextoCanvas.beginPath()
   contextoCanvas.arc(300, 300, 20, 0, 2 * Math.PI, false)
   contextoCanvas.fill()
+
+  // desenhando o placar
+  contextoCanvas.font = 'bold 72px Arial'
+  contextoCanvas.textAlign = 'center'
+  contextoCanvas.textBaseline = 'top'
+  contextoCanvas.fillStyle = '#01341D'
+  contextoCanvas.fillText('0', window.innerWidth / 4, 50)
+  contextoCanvas.fillText('3', window.innerWidth / 4 + window.innerWidth / 2, 50)
 }
 
 configuracoes()
