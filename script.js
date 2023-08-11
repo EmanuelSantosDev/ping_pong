@@ -1,5 +1,5 @@
 const elementoCanvas = document.querySelector('canvas')
-const contexto = elementoCanvas.getContext('2d')
+const ctx = elementoCanvas.getContext('2d')
 const espessuraDaLinha = 15
 const gapX = 10
 
@@ -8,8 +8,8 @@ const campo = {
    w: window.innerWidth,
    h: window.innerHeight,
    desenhar: function () {
-      contexto.fillStyle = '#286047'
-      contexto.fillRect(0, 0, this.w, this.h)
+      ctx.fillStyle = '#286047'
+      ctx.fillRect(0, 0, this.w, this.h)
    }
 }
 
@@ -18,9 +18,8 @@ const linha = {
    w: 15,
    h: campo.h,
    desenhar: function () {
-      contexto.fillStyle = '#ffffff'
-      contexto.fillRect(campo.w / 2 - this.w / 2, 0, this.w, this.h
-      )
+      ctx.fillStyle = '#ffffff'
+      ctx.fillRect(campo.w / 2 - this.w / 2, 0, this.w, this.h)
    }
 }
 
@@ -31,8 +30,8 @@ const raqueteEsquerda = {
    w: linha.w,
    h: 200,
    desenhar: function () {
-      contexto.fillStyle = '#ffffff'
-      contexto.fillRect(this.x, this.y, this.w, this.h)
+      ctx.fillStyle = '#ffffff'
+      ctx.fillRect(this.x, this.y, this.w, this.h)
    }
 }
 
@@ -43,8 +42,8 @@ const raqueteDireita = {
    w: linha.w,
    h: 200,
    desenhar: function () {
-      contexto.fillStyle = '#ffffff'
-      contexto.fillRect(this.x, this.y, this.w, this.h)
+      ctx.fillStyle = '#ffffff'
+      ctx.fillRect(this.x, this.y, this.w, this.h)
    }
 }
 
@@ -53,13 +52,12 @@ const placar = {
    humano: 1,
    computador: 2,
    desenhar: function () {
-      contexto.fillStyle = '#ffffff'
-      contexto.font = 'bold 72px Arial'
-      contexto.textAlign = 'center'
-      contexto.textBaseline = 'top'
-      contexto.fillStyle = '#01341D'
-      contexto.fillText(this.humano, campo.w / 4, 50)
-      contexto.fillText(this.computador, campo.w / 4 + campo.w / 2, 50)
+      ctx.font = 'bold 72px Arial'
+      ctx.textAlign = 'center'
+      ctx.textBaseline = 'top'
+      ctx.fillStyle = '#01341D'
+      ctx.fillText(this.humano, campo.w / 4, 50)
+      ctx.fillText(this.computador, campo.w / 4 + campo.w / 2, 50)
    }
 }
 
@@ -68,17 +66,23 @@ const bola = {
    x: 300,
    y: 200,
    r: 20,
+   speed: 10,
+   _move: function () {
+      this.x += 1 * 5
+      this.y += 1 * 5
+   },
    desenhar: function () {
-      contexto.fillStyle = '#ffffff'
-      contexto.beginPath()
-      contexto.arc(this.x, this.y, this.r, 0, 2 * Math.PI, false)
-      contexto.fill()
+      ctx.fillStyle = '#ffffff'
+      ctx.beginPath()
+      ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI, false)
+      ctx.fill()
+      this._move()
    }
 }
 
 function configuracoes() {
-   elementoCanvas.width = contexto.width = campo.w
-   elementoCanvas.height = contexto.height = campo.h
+   elementoCanvas.width = ctx.width = campo.w
+   elementoCanvas.height = ctx.height = campo.h
 }
 
 function desenhar() {
@@ -92,3 +96,5 @@ function desenhar() {
 
 configuracoes()
 desenhar()
+
+window.setInterval(desenhar, 1000 / 60)
