@@ -48,9 +48,13 @@ const raqueteDireita = {
    y: 100,
    w: linha.w,
    h: 200,
+   _move: function () {
+      this.y = bola.y
+   },
    desenhar: function () {
       ctx.fillStyle = '#ffffff'
       ctx.fillRect(this.x, this.y, this.w, this.h)
+      this._move()
    }
 }
 
