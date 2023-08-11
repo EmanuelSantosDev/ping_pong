@@ -94,7 +94,23 @@ function desenhar() {
    bola.desenhar()
 }
 
-configuracoes()
-desenhar()
+window.animateFrame = (function () {
+   return (
+      window.requestAnimationFrame ||
+      window.webkitRequestAnimationFrame ||
+      window.mozRequestAnimationFrame ||
+      window.oRequestAnimationFrame ||
+      window.msRequestAnimationFrame ||
+      function (callback) {
+         return window.setTimeout(callback, 1000 / 60)
+      }
+   )
+})()
 
-window.setInterval(desenhar, 1000 / 60)
+function main() {
+   animateFrame(main)
+   desenhar()
+}
+
+configuracoes()
+main()
