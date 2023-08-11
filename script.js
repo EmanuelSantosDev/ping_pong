@@ -3,6 +3,9 @@ const ctx = elementoCanvas.getContext('2d')
 const espessuraDaLinha = 15
 const gapX = 10
 
+// objeto MOUSE
+const mouse = { x: 0, y: 0 }
+
 // objeto CAMPO
 const campo = {
    w: window.innerWidth,
@@ -26,12 +29,16 @@ const linha = {
 // objeto RAQUETE ESQUERDA
 const raqueteEsquerda = {
    x: gapX,
-   y: 100,
+   y: 0,
    w: linha.w,
    h: 200,
+   _move: function () {
+      this.y = mouse.y - this.h / 2
+   },
    desenhar: function () {
       ctx.fillStyle = '#ffffff'
       ctx.fillRect(this.x, this.y, this.w, this.h)
+      this._move()
    }
 }
 
@@ -114,3 +121,8 @@ function main() {
 
 configuracoes()
 main()
+
+elementoCanvas.addEventListener('mousemove', function (e) {
+   mouse.x = e.pageX
+   mouse.y = e.pageY
+})
